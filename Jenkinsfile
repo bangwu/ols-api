@@ -8,7 +8,13 @@ pipeline {
             }
         }
         stage('Deploy to Test') {
-        agent { docker 'aaronyunan/jdk11-awscli' }
+            agent { docker 'aaronyunan/jdk11-awscli' }
+            steps {
+                sh './auto/deploy'
+            }
+        }
+        stage('Deploy to QA') {
+            agent { docker 'aaronyunan/jdk11-awscli' }
             steps {
                 sh './auto/deploy'
             }
